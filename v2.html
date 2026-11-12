@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Foto Kucing</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Verdana, sans-serif;
+      background: green;
+      color: antiquewhite;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 100vh;
+      width: 100%;
+      margin: 0;
+      padding: 20px;
+
+      text-align: center;
+    }
+
+    .kucing {
+      font-weight: bold;
+      font-size: 40px;
+      text-shadow: 3px 3px 5px black;
+      margin: 10px;
+      color: antiquewhite;
+    }
+
+img {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+
+  object-fit: cover;
+  border-radius: 0;
+  border: 5px solid black;
+}
+
+    h2 {
+      background: red;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h6 {
+      font-size: 12px;
+    }
+
+    button {
+      color: antiquewhite;
+      background: black;
+
+      padding: 15px 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background: darkgray;
+      color: black;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    #status {
+      margin-top: 10px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="kucing"> Foto Kucing</h1>
+
+  <img
+    id="fotoKucing"
+    src="https://cataas.com/cat"
+    alt="Foto kucing"
+  >
+
+  <h2>
+    Setelah dipencet harap tunggu 2 detik atau lebih
+  </h2>
+
+  <h1>Pusat Pabrik Stiker WA</h1>
+
+  <h6>v.1.0.1</h6>
+
+  <h1>Bisa di Zoom</h1>
+
+  <button id="tombolGanti" onclick="gantiFoto()">
+    Tombol Ganti Foto Kucing
+  </button>
+
+  <p id="status"></p>
+
+  <script>
+    const img = document.getElementById("fotoKucing");
+    const tombol = document.getElementById("tombolGanti");
+    const status = document.getElementById("status");
+
+    function gantiFoto() {
+      tombol.disabled = true;
+      status.textContent = "Memuat foto kucing...";
+
+      // URL foto kucing acak
+      img.src = "https://cataas.com/cat?t=" + Date.now();
+    }
+
+    // Foto berhasil dimuat
+    img.onload = function() {
+      tombol.disabled = false;
+      status.textContent = "Foto kucing berhasil dimuat!";
+    };
+
+    // Jika foto gagal dimuat
+    img.onerror = function() {
+      tombol.disabled = false;
+      status.textContent =
+        "Foto gagal dimuat. Coba tekan tombol lagi.";
+    };
+  </script>
+
+</body>
+</html>
+
